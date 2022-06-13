@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:9.6
+    container_name: mimita-postgres
+    restart: on-failure
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: mimita
+      POSTGRES_PASSWORD: mimita

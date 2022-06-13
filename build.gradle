@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example.zonky'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    runtimeOnly "org.postgresql:postgresql:42.3.1"
+
+    implementation "org.flywaydb:flyway-core:7.15.0"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation("org.junit.platform:junit-platform-suite:1.8.2")
+    testImplementation("io.cucumber:cucumber-java:7.3.4")
+    testImplementation("io.cucumber:cucumber-junit-platform-engine:7.3.4")
+    testImplementation "io.cucumber:cucumber-spring:7.3.4"
+    testImplementation "io.zonky.test:embedded-database-spring-test:2.1.1"
+    testImplementation group: 'org.flywaydb.flyway-test-extensions', name: 'flyway-spring-test', version: '7.0.0'
+
+    testImplementation "io.zonky.test:embedded-postgres:1.2.10"
+    testImplementation enforcedPlatform('io.zonky.test.postgres:embedded-postgres-binaries-bom:9.6.16')
+}
